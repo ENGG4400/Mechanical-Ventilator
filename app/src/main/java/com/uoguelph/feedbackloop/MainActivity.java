@@ -65,7 +65,7 @@ class quickChart {
         chart.getLegend().setEnabled( false );
 
         double initialX = Math.random() * Math.PI * 2;
-        entry.add( new Entry( (float)initialX, (float)Math.sin(initialX)));
+        entry.add( new Entry( 0f, 0f ));
 
         dataSet = new LineDataSet( entry, "Values");
         dataSet.setColor(color);
@@ -80,16 +80,17 @@ class quickChart {
     }
 
     private void AddEntry() {
-        float xValue = entry.get( entry.size() - 1 ).getX();
-        xValue += increment;
+        int numEntries = entry.size();
+        // float xValue = entry.get( entry.size() - 1 ).getX();
+        float xValue = (float)( numEntries * increment );
 
         // TODO: CHANGE NEXT LINE
-        lineData.addEntry( new Entry( xValue, (float)Math.sin(xValue)), 0 );
+        lineData.addEntry( new Entry( (float)numEntries, (float)Math.sin(xValue)), 0 );
         lineData.notifyDataChanged();
         chart.notifyDataSetChanged();
-        chart.setVisibleXRange( 15f, 15f );
-        chart.moveViewToX(xValue);
-        //chart.invalidate();
+        // 500 +-= PI * 2 * 4 * 10
+        chart.setVisibleXRange( 500f, 500f );
+        chart.moveViewToX(numEntries);
     }
 
     // warning this function is dangerous
