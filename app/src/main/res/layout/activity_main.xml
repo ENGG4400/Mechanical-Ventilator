@@ -6,13 +6,46 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:id="@+id/tvFlow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Flow Feedback"
+        app:layout_constraintBottom_toTopOf="@+id/tvVolume"
+        app:layout_constraintEnd_toStartOf="@+id/tvSettings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvPressure" />
+
+    <TextView
+        android:id="@+id/tvPressure"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Pressure Feedback"
+        app:layout_constraintBottom_toTopOf="@+id/tvFlow"
+        app:layout_constraintEnd_toEndOf="@+id/tvFlow"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvFlow"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvVolume"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Volume Feedback"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvFlow"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvFlow"
+        app:layout_constraintTop_toBottomOf="@+id/tvFlow" />
+
+    <TextView
+        android:id="@+id/tvSettings"
+        android:layout_width="180dp"
+        android:layout_height="0dp"
+        android:text="Settings"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
