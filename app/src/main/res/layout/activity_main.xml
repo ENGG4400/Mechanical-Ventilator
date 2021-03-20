@@ -6,38 +6,70 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <TextView
-        android:id="@+id/tvFlow"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="Flow Feedback"
-        app:layout_constraintBottom_toTopOf="@+id/tvVolume"
-        app:layout_constraintEnd_toStartOf="@+id/tvSettings"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPressure" />
-
     <TextView
         android:id="@+id/tvPressure"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:text="Pressure Feedback"
-        app:layout_constraintBottom_toTopOf="@+id/tvFlow"
+        app:layout_constraintBottom_toTopOf="@id/chartPressure"
         app:layout_constraintEnd_toEndOf="@+id/tvFlow"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvFlow"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvVolume"
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chartPressure"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Volume Feedback"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPressure"
+        app:layout_constraintBottom_toTopOf="@id/tvFlow"
         app:layout_constraintEnd_toEndOf="@+id/tvFlow"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tvFlow"
-        app:layout_constraintTop_toBottomOf="@+id/tvFlow" />
+        />
+
+    <TextView
+        android:id="@+id/tvFlow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Flow Feedback"
+        app:layout_constraintBottom_toTopOf="@+id/chartFlow"
+        app:layout_constraintEnd_toStartOf="@+id/tvSettings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chartPressure" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chartFlow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/tvFlow"
+        app:layout_constraintBottom_toTopOf="@id/tvVolume"
+        app:layout_constraintEnd_toEndOf="@+id/tvFlow"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvFlow"
+        />
+
+    <TextView
+        android:id="@+id/tvVolume"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Volume Feedback"
+        app:layout_constraintBottom_toTopOf="@id/chartVolume"
+        app:layout_constraintEnd_toEndOf="@+id/tvFlow"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvFlow"
+        app:layout_constraintTop_toBottomOf="@+id/chartFlow" />
+
+    <com.github.mikephil.charting.charts.LineChart
+        android:id="@+id/chartVolume"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvVolume"
+        app:layout_constraintEnd_toEndOf="@+id/tvFlow"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/tvFlow"
+        />
 
     <TextView
         android:id="@+id/tvSettings"
