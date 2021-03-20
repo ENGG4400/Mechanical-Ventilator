@@ -2,10 +2,14 @@ package com.uoguelph.feedbackloop;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -17,31 +21,69 @@ class quickChart {
     private LineChart chart;
     private List<Entry> entry = new ArrayList<Entry>();
     private double increment;
+    private Thread thread;
+    private AppCompatActivity activity;
 
-    public quickChart( double inc, LineChart chart ){
-        Log.v( "quickChart", "quickChart >");
-        Log.v( "quickChart", "quickChart > inc: " + inc );
-        Log.v( "quickChart", "quickChart > chart: " + chart );
-
+    public quickChart( double inc, LineChart chart, AppCompatActivity act ){
         increment = inc;
         this.chart = chart;
-        double initialX = Math.random() * Math.PI * 2;
+        activity = act;
+    }
 
+    void Start() {
+        // chart options
+        chart.getDescription().setEnabled( false );
+        chart.setTouchEnabled( true );
+        chart.setDragEnabled( true );
+        chart.setScaleEnabled( false );
+        chart.setDrawGridBackground( false );
+        chart.setVisibleXRangeMaximum( 120 );
+
+        // x-axis options
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setDrawGridLines(false);
+        xAxis.setDrawLabels(false);
+
+        YAxis leftAxis = chart.getAxisLeft();
+        leftAxis.setDrawGridLines( false );
+        leftAxis.setDrawLabels( false );
+        leftAxis.setAxisMaximum( 1.0f );
+        leftAxis.setAxisMinimum( -1.0f );
+
+        chart.getAxisRight().setEnabled( false );
+        chart.getLegend().setEnabled( false );
+
+        double initialX = Math.random() * Math.PI * 2;
         entry.add( new Entry( (float)initialX, (float)Math.sin(initialX)));
 
-        Log.v( "quickChart", "entry: " + entry );
-
         LineDataSet dataSet = new LineDataSet( entry, "Values");
-        dataSet.setColor(android.R.color.darker_gray);
+        dataSet.setColor(Color.CYAN);
 
         LineData lineData = new LineData( dataSet );
         chart.setData(lineData);
-        chart.invalidate();
 
-        Log.v( "quickChart", "quickChart <");
+        feed();
     }
 
+    private void AddEntry() {
+        float xValue = entry.get( entry.size() - 1 ).getX();
+        xValue += increment;
+        entry.add( new Entry( xValue, (float)Math.sin(xValue)));
+        chart.getData().notifyDataChanged();
+        chart.notifyDataSetChanged();
+        chart.invalidate();
+    }
 
+    private void feed () {
+        if( thread != null ) thread.interrupt();
+        final Runnable runnable = () -> AddEntry();
+        thread = new Thread(() -> {
+            while(true) {
+                activity.runOnUiThread( runnable );
+            }
+        });
+        thread.start();
+    }
 }
 
 
@@ -61,9 +103,13 @@ public class MainActivity extends AppCompatActivity {
 
         Log.v( "MainActivity", "onCreate >");
 
-        pressureChart = new quickChart( 0.05, findViewById( R.id.chartPressure));
-        flowChart = new quickChart( 0.12, findViewById( R.id.chartFlow));
-        volumeChart = new quickChart( 0.09, findViewById( R.id.chartVolume));
+        pressureChart = new quickChart( 0.05, findViewById( R.id.chartPressure), this );
+        flowChart = new quickChart( 0.12, findViewById( R.id.chartFlow), this );
+        volumeChart = new quickChart( 0.09, findViewById( R.id.chartVolume), this );
+
+        pressureChart.Start();
+        flowChart.Start();
+        volumeChart.Start();
 
         Log.v( "MainActivity", "onCreate <");
     }
