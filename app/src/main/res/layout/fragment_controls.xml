@@ -4,17 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/fragmentControls"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_height="0dp"
     tools:context=".MainActivity">
-
-    <TextView
-        android:id="@+id/tvControls"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/settings"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
         android:id="@+id/ip_fragment"
@@ -22,7 +13,9 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvControls" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rate_fragment"
+        tools:layout="@layout/fragment_ip" />
 
     <fragment
         android:id="@+id/rate_fragment"
@@ -30,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ie_fragment"
         app:layout_constraintTop_toBottomOf="@+id/ip_fragment" />
 
 
@@ -39,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ppt_fragment"
         app:layout_constraintTop_toBottomOf="@+id/rate_fragment" />
 
 
@@ -48,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/peep_fragment"
         app:layout_constraintTop_toBottomOf="@+id/ie_fragment" />
 
 
@@ -57,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/fo_fragment"
         app:layout_constraintTop_toBottomOf="@+id/ppt_fragment" />
 
 
@@ -66,7 +63,9 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/peep_fragment" />
+        app:layout_constraintTop_toBottomOf="@+id/peep_fragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,7 @@
     android:id="@+id/fragmentIP"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IP_Fragment">
+    >
 
     <ImageButton
         android:id="@+id/buttonUp_fip"
