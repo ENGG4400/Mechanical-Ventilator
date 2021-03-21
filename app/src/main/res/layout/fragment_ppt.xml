@@ -2,38 +2,38 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragmentIP"
+    android:id="@+id/fragmentPPT"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".IP_Fragment">
+    >
 
     <ImageButton
-        android:id="@+id/buttonUp_fip"
+        android:id="@+id/buttonUp_fppt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/up_arrow"
         android:src="@drawable/up_small"
-        app:layout_constraintEnd_toStartOf="@+id/textIP"
+        app:layout_constraintEnd_toStartOf="@+id/textPPT"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/up_small" />
 
     <EditText
-        android:id="@+id/textIP"
+        android:id="@+id/textPPT"
         android:layout_width="122dp"
         android:layout_height="40dp"
         android:autofillHints=""
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/ip_default"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDn_fip"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDn_fppt"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonUp_fip"
+        app:layout_constraintStart_toEndOf="@+id/buttonUp_fppt"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/buttonDn_fip"
+        android:id="@+id/buttonDn_fppt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/down_arrow"
@@ -41,18 +41,18 @@
         android:src="@drawable/up_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textIP"
+        app:layout_constraintStart_toEndOf="@+id/textPPT"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imagePPT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/ip"
         android:scaleX=".7"
         android:scaleY=".7"
-        android:src="@drawable/ip"
+        android:src="@drawable/ppt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textIP" />
+        app:layout_constraintTop_toBottomOf="@+id/textPPT" />
 </androidx.constraintlayout.widget.ConstraintLayout>

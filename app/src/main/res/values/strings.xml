@@ -6,4 +6,8 @@
     <string name="pressure_feedback">Pressure Feedback</string>
     <string name="flow_feedback">Flow Feedback</string>
     <string name="settings">Controls</string>
+    <string name="up_arrow">up arrow</string>
+    <string name="ip">IP</string>
+    <string name="down_arrow">down arrow</string>
+    <string name="ip_default">250</string>
 </resources>

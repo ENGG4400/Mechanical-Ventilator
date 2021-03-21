@@ -2,13 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragmentIP"
+    android:id="@+id/fragmentRate"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".IP_Fragment">
 
     <ImageButton
-        android:id="@+id/buttonUp_fip"
+        android:id="@+id/buttonUp_frate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/up_arrow"
@@ -27,13 +27,13 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="@string/ip_default"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDn_fip"
+        app:layout_constraintEnd_toStartOf="@+id/buttonDn_frate"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonUp_fip"
+        app:layout_constraintStart_toEndOf="@+id/buttonUp_frate"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/buttonDn_fip"
+        android:id="@+id/buttonDn_frate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/down_arrow"
@@ -45,13 +45,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageRate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/ip"
         android:scaleX=".7"
         android:scaleY=".7"
-        android:src="@drawable/ip"
+        android:src="@drawable/rate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textIP" />

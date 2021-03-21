@@ -17,11 +17,56 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/ip_fragment"
         android:name="com.uoguelph.feedbackloop.IP_Fragment"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvControls" />
+
+    <fragment
+        android:id="@+id/rate_fragment"
+        android:name="com.uoguelph.feedbackloop.RateFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ip_fragment" />
+
+
+    <fragment
+        android:id="@+id/ie_fragment"
+        android:name="com.uoguelph.feedbackloop.IEFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rate_fragment" />
+
+
+    <fragment
+        android:id="@+id/ppt_fragment"
+        android:name="com.uoguelph.feedbackloop.PptFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ie_fragment" />
+
+
+    <fragment
+        android:id="@+id/peep_fragment"
+        android:name="com.uoguelph.feedbackloop.PeepFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ppt_fragment" />
+
+
+    <fragment
+        android:id="@+id/fo_fragment"
+        android:name="com.uoguelph.feedbackloop.FoFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/peep_fragment" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
