@@ -6,6 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageButton;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -135,5 +138,54 @@ public class MainActivity extends AppCompatActivity {
         pressureChart.Start();
         flowChart.Start();
         volumeChart.Start();
+
+        registerControlChangers(
+                findViewById( R.id.textIP ),
+                findViewById( R.id.buttonUp_fip ),
+                findViewById( R.id.buttonDn_fip ) );
+
+        registerControlChangers(
+                findViewById( R.id.textRate ),
+                findViewById( R.id.buttonUp_frate ),
+                findViewById( R.id.buttonDn_frate ) );
+
+        registerControlChangers(
+                findViewById( R.id.textIE ),
+                findViewById( R.id.buttonUp_fie ),
+                findViewById( R.id.buttonDn_fie ) );
+
+        registerControlChangers(
+                findViewById( R.id.textPPT ),
+                findViewById( R.id.buttonUp_fppt ),
+                findViewById( R.id.buttonDn_fppt ) );
+        registerControlChangers(
+                findViewById( R.id.textPEEP ),
+                findViewById( R.id.buttonUp_fpeep ),
+                findViewById( R.id.buttonDn_fpeep ) );
+
+        registerControlChangers(
+                findViewById( R.id.textFO ),
+                findViewById( R.id.buttonUp_ffo ),
+                findViewById( R.id.buttonDn_ffo ) );
+
+
+
     }
+
+    void registerControlChangers(EditText valueField, ImageButton upButton, ImageButton downButton ) {
+        upButton.setOnClickListener(
+                v -> {
+                    int val = Integer.parseInt(String.valueOf(valueField.getText()));
+                    valueField.setText( Integer.toString( val + 1 ));
+                }
+        );
+        downButton.setOnClickListener(
+                v -> {
+                    int val = Integer.parseInt(String.valueOf(valueField.getText()));
+                    valueField.setText( Integer.toString( val - 1 ));
+                }
+        );
+
+    }
+
 }

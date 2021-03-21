@@ -13,14 +13,14 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/up_arrow"
         android:src="@drawable/up_small"
-        app:layout_constraintEnd_toStartOf="@+id/textIP"
+        app:layout_constraintEnd_toStartOf="@+id/textRate"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/up_small" />
 
     <EditText
-        android:id="@+id/textIP"
+        android:id="@+id/textRate"
         android:layout_width="122dp"
         android:layout_height="40dp"
         android:autofillHints=""
@@ -41,7 +41,7 @@
         android:src="@drawable/up_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textIP"
+        app:layout_constraintStart_toEndOf="@+id/textRate"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -54,5 +54,5 @@
         android:src="@drawable/rate"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textIP" />
+        app:layout_constraintTop_toBottomOf="@+id/textRate" />
 </androidx.constraintlayout.widget.ConstraintLayout>
