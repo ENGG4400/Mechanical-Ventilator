@@ -13,10 +13,10 @@
         android:layout_height="wrap_content"
         android:contentDescription="up arrow"
         android:src="@drawable/up_small"
-        app:layout_constraintEnd_toStartOf="@+id/textIP"
+        app:layout_constraintEnd_toStartOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteY="92dp"
         tools:src="@drawable/up_small" />
 
     <EditText
@@ -27,9 +27,8 @@
         android:inputType="textPersonName"
         android:text="250"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDn_fip"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonUp_fip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
@@ -40,8 +39,8 @@
         android:src="@drawable/up_small"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textIP"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        tools:layout_editor_absoluteY="92dp" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -49,7 +48,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ip"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textIP" />
+        app:layout_constraintEnd_toStartOf="@+id/buttonDn_fip"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/buttonUp_fip" />
 </androidx.constraintlayout.widget.ConstraintLayout>
