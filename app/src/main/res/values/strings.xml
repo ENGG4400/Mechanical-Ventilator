@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Feedback Loop</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="volume_feedback">Volume Feedback</string>
+    <string name="pressure_feedback">Pressure Feedback</string>
+    <string name="flow_feedback">Flow Feedback</string>
+    <string name="settings">Controls</string>
 </resources>
