@@ -7,8 +7,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Spinner;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Legend;
@@ -31,6 +35,7 @@ class quickChart {
     private double increment;
     private Thread thread;
     private int color;
+
 
     public quickChart( LineChart chart, int c ){
         // TODO: remove increment later...
@@ -116,14 +121,15 @@ class quickChart {
 }
 
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity { //implements AdapterView.OnItemSelectedListener
 
     private quickChart pressureChart;
     private quickChart volumeChart;
     private quickChart flowChart;
+    private Spinner spinner; //new
+    private ImageView textPPT; //new
 
-    public MainActivity() {
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,10 +160,11 @@ public class MainActivity extends AppCompatActivity {
                 findViewById( R.id.buttonUp_fie ),
                 findViewById( R.id.buttonDn_fie ) );
 
-        registerControlChangers(
-                findViewById( R.id.textPPT ),
-                findViewById( R.id.buttonUp_fppt ),
-                findViewById( R.id.buttonDn_fppt ) );
+       // registerControlChangers(
+              //  findViewById( R.id.textPPT );
+             //  findViewById( R.id.buttonUp_fppt ),
+             //   findViewById( R.id.buttonDn_fppt ) );
+
         registerControlChangers(
                 findViewById( R.id.textPEEP ),
                 findViewById( R.id.buttonUp_fpeep ),
@@ -168,7 +175,15 @@ public class MainActivity extends AppCompatActivity {
                 findViewById( R.id.buttonUp_ffo ),
                 findViewById( R.id.buttonDn_ffo ) );
 
+        //new below
+        textPPT = findViewById(R.id.textPPT);
+        spinner = findViewById(R.id.spinner);
 
+        String[] stringPTT = getResources().getStringArray(R.array.PTT_options);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, stringPTT);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        //new ends
 
     }
 
@@ -188,4 +203,41 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
 }
+
+/*
+public class MainActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+
+    private Spinner spinner;
+    private ImageView textPPT;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        textPPT = findViewById(R.id.textPPT);
+        spinner = findViewById(R.id.spinner);
+
+        String[] stringPTT = getResources().getStringArray(R.array.PTT_options);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, stringPTT);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+/*
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        if (parent.getId() == R.id.spinner) {
+            String valueFromSpinner = parent.getItemAtPosition(position).toString();
+            textPPT.setTextSize(Float.parseFloat(valueFromSpinner));
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+    }
+}
+
+ */
+

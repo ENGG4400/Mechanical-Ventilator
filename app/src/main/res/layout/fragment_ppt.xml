@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
+<!--
     <ImageButton
         android:id="@+id/buttonUp_fppt"
         android:layout_width="wrap_content"
@@ -17,8 +17,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/up_small" />
-
+        tools:src="@drawable/up_small" /> -->
+<!--
     <EditText
         android:id="@+id/textPPT"
         android:layout_width="122dp"
@@ -31,7 +31,8 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/buttonUp_fppt"
         app:layout_constraintTop_toTopOf="parent" />
-
+        -->
+<!--
     <ImageButton
         android:id="@+id/buttonDn_fppt"
         android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textPPT"
         app:layout_constraintTop_toTopOf="parent" />
-
+-->
     <ImageView
         android:id="@+id/imagePPT"
         android:layout_width="wrap_content"
@@ -54,5 +55,28 @@
         android:src="@drawable/ppt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPPT" />
+        app:layout_constraintTop_toBottomOf="@+id/textPPT" /> <!-- app:layout_constraintTop_toBottomOf="@+id/imagePPT" -->
+<!--
+    <TextView
+        android:id="@+id/textPTT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="PTT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" /> -->
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/ip"
+        android:scaleX=".7"
+        android:scaleY=".7"
+        android:src="@drawable/ppt"
+        app:layout_constraintBottom_toBottomOf="@+id/imagePPT"
+        app:layout_constraintEnd_toEndOf="@+id/imagePPT"
+        app:layout_constraintStart_toStartOf="@+id/imagePPT"
+        app:layout_constraintTop_toBottomOf="@+id/imagePPT" />
 </androidx.constraintlayout.widget.ConstraintLayout>
