@@ -21,6 +21,7 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,14 +61,18 @@ class quickChart {
         XAxis xAxis = chart.getXAxis();
         xAxis.setDrawGridLines(false);
         xAxis.setDrawLabels(false);
+        xAxis.setTextColor(Color.WHITE);
 
 
         YAxis leftAxis = chart.getAxisLeft();
-        leftAxis.setEnabled( false );
-        leftAxis.setDrawGridLines( false );
-        leftAxis.setDrawLabels( false );
+        leftAxis.setEnabled( true );
+        leftAxis.setDrawGridLines( true );
+        leftAxis.setDrawLabels( true );
         leftAxis.setAxisMaximum( 1.1f );
         leftAxis.setAxisMinimum( -1.1f );
+        leftAxis.setTextColor(Color.WHITE);
+        leftAxis.setTextSize(20f);
+
 
         chart.getAxisRight().setEnabled( false );
         chart.getLegend().setEnabled( false );
@@ -80,9 +85,15 @@ class quickChart {
         dataSet.setDrawCircles( false );
         dataSet.setAxisDependency( YAxis.AxisDependency.LEFT );
         dataSet.setDrawValues( false );
+        dataSet.setValueTextColor(Color.WHITE);
 
         lineData = new LineData( dataSet );
         chart.setData(lineData);
+
+        //BACKGROUND
+        chart.setBackgroundColor(Color.BLACK);
+        chart.setGridBackgroundColor(Color.BLACK);
+
 
         feed();
     }
@@ -137,9 +148,9 @@ public class MainActivity extends AppCompatActivity { //implements AdapterView.O
         setContentView(R.layout.activity_main);
 
         quickChart.SetBaseActivity( this );
-        pressureChart = new quickChart( findViewById( R.id.chartPressure), Color.BLUE );
+        pressureChart = new quickChart( findViewById( R.id.chartPressure), Color.CYAN );
         flowChart = new quickChart( findViewById( R.id.chartFlow), Color.RED );
-        volumeChart = new quickChart( findViewById( R.id.chartVolume), Color.GREEN );
+        volumeChart = new quickChart( findViewById( R.id.chartVolume), Color.YELLOW );
 
         pressureChart.Start();
         flowChart.Start();
@@ -175,15 +186,18 @@ public class MainActivity extends AppCompatActivity { //implements AdapterView.O
                 findViewById( R.id.buttonUp_ffo ),
                 findViewById( R.id.buttonDn_ffo ) );
 
-        //new below
-        textPPT = findViewById(R.id.textPPT);
+
+
+
+        //add dropdown menu for PTT
+        textPPT = findViewById(R.id.imagePPT);
         spinner = findViewById(R.id.spinner);
 
         String[] stringPTT = getResources().getStringArray(R.array.PTT_options);
         ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, stringPTT);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        //new ends
+
 
     }
 
