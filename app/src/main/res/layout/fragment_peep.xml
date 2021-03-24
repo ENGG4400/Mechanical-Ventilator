@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/up_arrow"
         android:src="@drawable/up_small"
-        app:layout_constraintEnd_toStartOf="@+id/textPPT"
+        app:layout_constraintEnd_toStartOf="@+id/imagePPT"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

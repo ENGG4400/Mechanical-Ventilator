@@ -50,12 +50,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/ip"
-        android:scaleX="0.7"
-        android:scaleY="0.7"
+        android:scaleX="1.2"
+        android:scaleY="1.2"
         android:src="@drawable/ptt"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintVertical_bias="0.5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textPPT" /> <!-- app:layout_constraintTop_toBottomOf="@+id/imagePPT" -->
+        app:layout_constraintTop_toTopOf="parent" /> <!-- app:layout_constraintTop_toBottomOf="@+id/imagePPT" -->
 <!--
     <TextView
         android:id="@+id/textPTT"
@@ -69,14 +70,19 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/ip"
-        android:scaleX="0.7"
-        android:scaleY="0.7"
+        android:scaleX="1"
+        android:scaleY="1"
         android:src="@drawable/ppt"
+        app:layout_constraintHorizontal_bias="1.5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagePPT" />
+        <!--
         app:layout_constraintBottom_toBottomOf="@+id/imagePPT"
         app:layout_constraintEnd_toEndOf="@+id/imagePPT"
         app:layout_constraintStart_toStartOf="@+id/imagePPT"
-        app:layout_constraintTop_toBottomOf="@+id/imagePPT" />
+        app:layout_constraintTop_toBottomOf="@+id/imagePPT" -->
 </androidx.constraintlayout.widget.ConstraintLayout>

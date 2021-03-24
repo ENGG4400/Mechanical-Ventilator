@@ -42,9 +42,11 @@
         android:name="com.uoguelph.feedbackloop.PptFragment"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/peep_fragment"
-        app:layout_constraintTop_toBottomOf="@+id/ie_fragment" />
+        app:layout_constraintTop_toBottomOf="@+id/ie_fragment"
+        tools:layout="@layout/fragment_ppt"/>
 
 
     <fragment
