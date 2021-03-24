@@ -69,5 +69,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
+    <!-- this doesn't work yet-->
+    <fragment
+        android:id="@+id/set_fragment"
+        android:name="com.uoguelph.feedbackloop.setFragment"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fo_fragment"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
