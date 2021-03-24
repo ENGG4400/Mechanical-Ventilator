@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-
+<!-- DON'T NEED
     <ImageButton
         android:id="@+id/buttonUp_ffo"
         android:layout_width="wrap_content"
@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:src="@drawable/up_small" />
-
+-->
     <EditText
         android:id="@+id/textFO"
         android:layout_width="122dp"
@@ -27,11 +27,12 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="0.2"
-        app:layout_constraintEnd_toStartOf="@+id/buttonDn_ffo"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonUp_ffo"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <!-- DON'T NEED
     <ImageButton
         android:id="@+id/buttonDn_ffo"
         android:layout_width="wrap_content"
@@ -43,6 +44,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textFO"
         app:layout_constraintTop_toTopOf="parent" />
+-->
 
     <ImageView
         android:id="@+id/imagePEEP"

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.style.BackgroundColorSpan;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -37,7 +38,7 @@ class quickChart {
     private Thread thread;
     private int color;
 
-
+    //increment so all graphs are not the same
     public quickChart( LineChart chart, int c ){
         // TODO: remove increment later...
         increment = 0.05 + Math.random()/20;
@@ -87,7 +88,7 @@ class quickChart {
         dataSet.setDrawValues( false );
         dataSet.setValueTextColor(Color.WHITE);
 
-        lineData = new LineData( dataSet );
+          lineData = new LineData( dataSet );
         chart.setData(lineData);
 
         //BACKGROUND
@@ -150,7 +151,9 @@ public class MainActivity extends AppCompatActivity { //implements AdapterView.O
         quickChart.SetBaseActivity( this );
         pressureChart = new quickChart( findViewById( R.id.chartPressure), Color.CYAN );
         flowChart = new quickChart( findViewById( R.id.chartFlow), Color.RED );
+        //chart volume = integral of chart flow
         volumeChart = new quickChart( findViewById( R.id.chartVolume), Color.YELLOW );
+        //volumeChart = new quickChart //(in progress)
 
         pressureChart.Start();
         flowChart.Start();
@@ -180,11 +183,11 @@ public class MainActivity extends AppCompatActivity { //implements AdapterView.O
                 findViewById( R.id.textPEEP ),
                 findViewById( R.id.buttonUp_fpeep ),
                 findViewById( R.id.buttonDn_fpeep ) );
-
-        registerControlChangers(
-                findViewById( R.id.textFO ),
-                findViewById( R.id.buttonUp_ffo ),
-                findViewById( R.id.buttonDn_ffo ) );
+        //don't need
+        //registerControlChangers(
+                //findViewById( R.id.textFO ),
+                //findViewById( R.id.buttonUp_ffo ),
+                //findViewById( R.id.buttonDn_ffo ) );
 
 
 
