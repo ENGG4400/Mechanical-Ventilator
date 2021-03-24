@@ -17,6 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <fragment
         android:id="@+id/fragment3"
         android:name="com.uoguelph.feedbackloop.ControlsFragment"
