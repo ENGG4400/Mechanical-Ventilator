@@ -38,19 +38,23 @@ class quickChart {
     private Thread thread;
     private int color;
 
+
+
     //increment so all graphs are not the same
     public quickChart( LineChart chart, int c ){
         // TODO: remove increment later...
         increment = 0.05 + Math.random()/20;
         this.chart = chart;
         this.color = c;
+
+
     }
 
     public static void SetBaseActivity( AppCompatActivity activity ) {
         quickChart.activity = activity;
     }
 
-    void Start() {
+    void Start(double maxAlert, double minAlert) {
         // chart options
         chart.getDescription().setEnabled( false );
         chart.setTouchEnabled( true );
@@ -96,10 +100,11 @@ class quickChart {
         chart.setGridBackgroundColor(Color.BLACK);
 
 
-        feed();
+        feed(maxAlert,minAlert);
     }
 
-    private void AddEntry() {
+    private void AddEntry(double maxAlert, double minAlert) {
+
         int numEntries = entry.size();
         // float xValue = entry.get( entry.size() - 1 ).getX();
         float xValue = (float)( numEntries * increment );
@@ -111,12 +116,18 @@ class quickChart {
         // 500 +-= PI * 2 * 4 * 10
         chart.setVisibleXRange( 500f, 500f );
         chart.moveViewToX(numEntries);
+        if((float)Math.sin(xValue)>maxAlert||(float)Math.sin(xValue)<minAlert) {
+            chart.setBackgroundColor(Color.RED);
+        }
+        else {
+            chart.setBackgroundColor(Color.BLACK);
+        }
     }
 
     // warning this function is dangerous
-    private void feed () {
+    private void feed (double maxAlert, double minAlert) {
         if( thread != null ) thread.interrupt();
-        final Runnable runnable = () -> AddEntry();
+        final Runnable runnable = () -> AddEntry(maxAlert,minAlert);
         thread = new Thread(() -> {
             while(true) {
                 activity.runOnUiThread( runnable );
@@ -141,6 +152,13 @@ public class MainActivity extends AppCompatActivity { //implements AdapterView.O
     private quickChart flowChart;
     private Spinner spinner; //new
     private ImageView textPPT; //new
+    private double maxPressureAlert = 0.5;
+    private double minPressureAlert= -0.5;
+    private double maxFlowAlert=1;
+    private double minFlowAlert=-1;
+    private double maxVolumeAlert = 1;
+    private double minVolumeAlert = -1;
+
 
 
     @Override
@@ -155,9 +173,9 @@ public class MainActivity extends AppCompatActivity { //implements AdapterView.O
         volumeChart = new quickChart( findViewById( R.id.chartVolume), Color.YELLOW );
         //volumeChart = new quickChart //(in progress)
 
-        pressureChart.Start();
-        flowChart.Start();
-        volumeChart.Start();
+        pressureChart.Start(maxPressureAlert,minPressureAlert);
+        flowChart.Start(maxFlowAlert,minFlowAlert);
+        volumeChart.Start(maxVolumeAlert, minVolumeAlert);
 
         registerControlChangers(
                 findViewById( R.id.textIP ),
