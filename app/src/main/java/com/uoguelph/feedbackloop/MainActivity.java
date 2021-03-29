@@ -54,7 +54,7 @@ class quickChart {
         quickChart.activity = activity;
     }
 
-    void Start(double maxAlert, double minAlert) {
+    void Start(double maxAlert, double minAlert, String parameter) {
         // chart options
         chart.getDescription().setEnabled( false );
         chart.setTouchEnabled( true );
@@ -100,34 +100,66 @@ class quickChart {
         chart.setGridBackgroundColor(Color.BLACK);
 
 
-        feed(maxAlert,minAlert);
+        feed(maxAlert,minAlert, parameter);
     }
 
-    private void AddEntry(double maxAlert, double minAlert) {
+    private void AddEntry(double maxAlert, double minAlert, String parameter) {
 
         int numEntries = entry.size();
         // float xValue = entry.get( entry.size() - 1 ).getX();
         float xValue = (float)( numEntries * increment );
 
+
         // TODO: CHANGE NEXT LINE
-        lineData.addEntry( new Entry( (float)numEntries, (float)Math.sin(xValue)), 0 );
-        lineData.notifyDataChanged();
-        chart.notifyDataSetChanged();
-        // 500 +-= PI * 2 * 4 * 10
-        chart.setVisibleXRange( 500f, 500f );
-        chart.moveViewToX(numEntries);
-        if((float)Math.sin(xValue)>maxAlert||(float)Math.sin(xValue)<minAlert) {
-            chart.setBackgroundColor(Color.RED);
+        if(parameter=="Pressure"||parameter=="Flow"){
+            lineData.addEntry( new Entry( (float)numEntries, (float)Math.sin(xValue)), 0 );
+            lineData.notifyDataChanged();
+            chart.notifyDataSetChanged();
+            // 500 +-= PI * 2 * 4 * 10
+            chart.setVisibleXRange( 500f, 500f );
+            chart.moveViewToX(numEntries);
+            if((float)Math.sin(xValue)>maxAlert||(float)Math.sin(xValue)<minAlert) {
+                chart.setBackgroundColor(Color.RED);
+            }
+            else {
+                chart.setBackgroundColor(Color.BLACK);
+            }
         }
-        else {
-            chart.setBackgroundColor(Color.BLACK);
+        else{
+
+            float area = 0;
+
+            if (numEntries>40) {
+
+
+                for (int i = 1; i < 40; i++) {
+
+                    float width = (float)Math.sin(xValue -(i*increment))+(float)Math.sin(xValue -((i+1)*increment))/2;
+                    area = area + (float) increment * width;
+
+                }
+            }
+            //now we are adding the data
+            lineData.addEntry( new Entry( (float)numEntries, area), 0 );
+            lineData.notifyDataChanged();
+            chart.notifyDataSetChanged();
+            // 500 +-= PI * 2 * 4 * 10
+            chart.setVisibleXRange( 500f, 500f );
+            chart.moveViewToX(numEntries);
+            if(area>maxAlert||area<minAlert) {
+                chart.setBackgroundColor(Color.RED);
+            }
+            else chart.setBackgroundColor(Color.BLACK);
+
         }
+
+
     }
 
     // warning this function is dangerous
-    private void feed (double maxAlert, double minAlert) {
+    private void feed (double maxAlert, double minAlert, String parameter) {
         if( thread != null ) thread.interrupt();
-        final Runnable runnable = () -> AddEntry(maxAlert,minAlert);
+        final Runnable runnable = () -> AddEntry(maxAlert,minAlert, parameter);
         thread = new Thread(() -> {
             while(true) {
                 activity.runOnUiThread( runnable );
@@ -158,6 +190,8 @@ public class MainActivity extends AppCompatActivity { //implements AdapterView.O
     private double minFlowAlert=-1;
     private double maxVolumeAlert = 1;
     private double minVolumeAlert = -1;
+    //private Pressure = "Pressure"
+
 
 
 
@@ -173,9 +207,9 @@ public class MainActivity extends AppCompatActivity { //implements AdapterView.O
         volumeChart = new quickChart( findViewById( R.id.chartVolume), Color.YELLOW );
         //volumeChart = new quickChart //(in progress)
 
-        pressureChart.Start(maxPressureAlert,minPressureAlert);
-        flowChart.Start(maxFlowAlert,minFlowAlert);
-        volumeChart.Start(maxVolumeAlert, minVolumeAlert);
+        pressureChart.Start(maxPressureAlert,minPressureAlert,"Pressure");
+        flowChart.Start(maxFlowAlert,minFlowAlert,"Flow");
+        volumeChart.Start(maxVolumeAlert, minVolumeAlert,"Volume");
 
         registerControlChangers(
                 findViewById( R.id.textIP ),
