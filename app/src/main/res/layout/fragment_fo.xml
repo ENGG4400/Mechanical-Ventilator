@@ -50,6 +50,7 @@
         android:id="@+id/imagePEEP"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:contentDescription="@string/ip"
         android:scaleX=".7"
         android:scaleY=".7"
@@ -58,17 +59,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textFO" />
 
-    <Button
+    <!--Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="40dp"
+
         android:background="@color/purple_200"
         android:text="SET"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imagePEEP" />
+        app:layout_constraintTop_toBottomOf="@+id/imagePEEP" /-->
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+   <!-- android:layout_marginTop="90dp"
+    android:layout_marginBottom="10dp"-->
