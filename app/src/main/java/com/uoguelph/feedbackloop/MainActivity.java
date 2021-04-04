@@ -55,6 +55,12 @@ class quickChart {
     private double increment;
     private Thread thread;
     private int color;
+    public static Handler handler;
+    private final static int CONNECTING_STATUS = 1; // used in bluetooth handler to identify message status
+    private final static int MESSAGE_READ = 2; // used in bluetooth handler to identify message update
+    private float arduinoMsg;
+
+
 
 
 
@@ -125,15 +131,32 @@ class quickChart {
         float xValue = (float)( numEntries * increment );
 
 
-        // TODO: CHANGE NEXT LINE
         if(parameter=="Pressure"||parameter=="Flow"){
-            lineData.addEntry(new Entry((float) numEntries, (float) Math.sin(xValue)), 0);
+            arduinoMsg = 0;
+
+            handler = new Handler(Looper.getMainLooper()) {
+                @Override
+                public void handleMessage(Message msg){
+                    switch (msg.what) {
+                        case CONNECTING_STATUS:
+                            break;
+                        case MESSAGE_READ: // Read message from Arduino
+                            if (msg.obj instanceof Float) {
+                                arduinoMsg = (float) msg.obj;
+                            }
+                    }
+                }
+            };
+            if (arduinoMsg == 0) {
+                arduinoMsg = (float) Math.sin(xValue);
+            }
+            lineData.addEntry(new Entry((float) numEntries, arduinoMsg), 0);
             lineData.notifyDataChanged();
             chart.notifyDataSetChanged();
             // 500 +-= PI * 2 * 4 * 10
             chart.setVisibleXRange( 500f, 500f );
             chart.moveViewToX(numEntries);
-            if ((float) Math.sin(xValue) > maxAlert || (float) Math.sin(xValue) < minAlert) {
+            if (arduinoMsg > maxAlert || arduinoMsg < minAlert) {
                 chart.setBackgroundColor(Color.RED);
             }
             else {
@@ -146,6 +169,7 @@ class quickChart {
 
             if (numEntries>40) {
                 for (int i = 1; i < 40; i++) {
+                    //TODO: change this from sin values to arduinoMsg
                     float width = (float)Math.sin(xValue -(i*increment))+(float)Math.sin(xValue -((i+1)*increment))/2;
                     area = area + (float) increment * width;
                 }
@@ -250,27 +274,7 @@ public class MainActivity extends AppCompatActivity { //implements AdapterView.O
             createConnectThread.start();
         }
 
-        handler = new Handler(Looper.getMainLooper()) {
-            @Override
-            public void handleMessage(Message msg){
-                switch (msg.what){
-                    case CONNECTING_STATUS:
-                        switch(msg.arg1){
-                            case 1:
-                                buttonConnect.setEnabled(true);
-                                break;
-                            case -1:
-                                buttonConnect.setEnabled(true);
-                                break;
-                        }
-                        break;
 
-                    case MESSAGE_READ:
-                        String arduinoMsg = msg.obj.toString(); // Read message from Arduino
-                        break;
-                }
-            }
-        };
 
         // Select Bluetooth Device
         buttonConnect.setOnClickListener(new View.OnClickListener() {
